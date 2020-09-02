@@ -1,7 +1,8 @@
 <?php
 
-namespace MyCli;
+namespace App\Command;
 
+use PHPMailer\PHPMailer\PHPMailer;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -10,9 +11,15 @@ class HelloWorld extends Command
 {
   protected static $defaultName = "hello_world";
 
+  public function __construct(PHPMailer $php)
+  {
+    $this->php = $php;
+    parent::__construct();
+  }
+
   public function execute(InputInterface $input, OutputInterface $output)
   {
-    $output->writeln("<info>Hello World!</info>");
+    $output->writeln("<error>Hello World!</error>");
 
     return Command::SUCCESS;
   }
